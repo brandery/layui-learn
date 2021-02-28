@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>hiadmin</title>
+  <link rel="stylesheet" href="../src/css/layui.css">
+  <style>
+    .layui-footer { alignment: center; text-align: center}
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">生产平台</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item layadmin-flexible" lay-unselect>
+        <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+          <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">数据管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="javascript:;" layadmin-event="fullscreen">
+          <i class="layui-icon layui-icon-screen-full"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          hitts
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退出</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="nav-tts">TTS</a>
+          <dl class="layui-nav-child">
+            <dd><a href="./button.html">hitts</a></dd>
+            <dd><a href="./element.html">ali-tts</a></dd>
+            <dd><a href="./code.html">字节-tts</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">ASR</a>
+          <dl class="layui-nav-child">
+            <dd><a href="./all.html">all</a></dd>
+            <dd><a href="./button.html">button</a></dd>
+            <dd><a href="./carousel.html">carousel</a></dd>
+            <dd><a href="./code.html">code</a></dd>
+            <dd><a href="./colorpicker.html">colorpicker</a></dd>
+            <dd><a href="./element.html">element</a></dd>
+            <dd><a href="./extend.html">extend</a></dd>
+            <dd><a href="./flow.html">flow</a></dd>
+            <dd><a href="./form.html">form</a></dd>
+            <dd><a href="./laydate.html">laydate</a></dd>
+            <dd><a href="./layedit.html">layedit</a></dd>
+            <dd><a href="./layer.html">layer</a></dd>
+            <dd><a href="./layout.html">layout</a></dd>
+            <dd><a href="./laypage.html">laypage</a></dd>
+            <dd><a href="./rate.html">rate</a></dd>
+            <dd><a href="./responsive.html">responsive</a></dd>
+            <dd><a href="./slider.html">slider</a></dd>
+            <dd><a href="./table.html">table</a></dd>
+            <dd><a href="./transfer.html">transfer</a></dd>
+            <dd><a href="./tree.html">tree</a></dd>
+            <dd><a href="./upload.html">upload</a></dd>
+            <dd><a href="./util.html">util</a></dd>
+            <dd><a href="./xingzuo.html">xingzuo</a></dd>
+          </dl>
+        </li>
+<!--        <li class="layui-nav-item"><a href="">云市场</a></li>-->
+<!--        <li class="layui-nav-item"><a href="">发布商品</a></li>-->
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+<!--    <div style="padding: 15px;">内容主体区域</div>-->
+    <iframe id="iframe_main" src="" style="width: 100%"; height="100%";></iframe>
+  </div>
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © hiadmin.ximalaya.com - 音频算法生产平台
+  </div>
+</div>
+<script src="../src/layui.js"></script>
+<!--导入jquery（这里用jq实现，也可以用内置的jquery或者原生js）：-->
+<!--<script src="../js/jquery-3.3.1.js"></script>-->
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+});
+
+layui.use(['jquery', 'layer'], function () {
+  var $ = layui.$ //重点处
+          , layer = layui.layer;
+  // 在jq方法体写逻辑：模拟单页跳转
+  $(document).ready(function() {
+    $("dd>a").click(function (e) {
+      e.preventDefault();
+      $("#iframe_main").attr("src",$(this).attr("href"));
+    });
+  });
+  // 逻辑：通过jq拿a的href值放到iframe的src属性上
+  // 解释：e.preventDefault();：设置a的点击事件不跳转到另一个页面
+  // $("iframeMain").attr("src",$(this).attr("href"));：给iframe添加src属性，值为a的href值
+});
+
+</script>
+</body>
+</html>
